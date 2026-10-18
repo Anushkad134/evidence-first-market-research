@@ -1,158 +1,153 @@
-# evidence-first-market-research
 <div align="center">
 
-# 📊 Market Intelligence Studio
+<img src="assets/hero.svg" alt="Market Intelligence Studio" width="100%"/>
 
-### Turn any company, product, or industry question into a **source-backed market brief**, with interactive 3D analytics.
+<br/>
 
-![Python](https://img.shields.io/badge/Python-3.10%2B-3776AB?logo=python&logoColor=white)
-![Streamlit](https://img.shields.io/badge/Streamlit-App-FF4B4B?logo=streamlit&logoColor=white)
-![LangGraph](https://img.shields.io/badge/LangGraph-Parallel%20Agents-1C3C3C)
-![OpenAI](https://img.shields.io/badge/OpenAI-gpt--4.1--mini-412991?logo=openai&logoColor=white)
-![Tavily](https://img.shields.io/badge/Search-Tavily-087EAA)
-![Plotly](https://img.shields.io/badge/Plotly-2D%20%2B%203D-3F4F75?logo=plotly&logoColor=white)
+<a href="#-quick-start"><img src="assets/launch.svg" alt="Quick start" height="56"/></a>
 
-**Research • Compare • Discover**
+<br/><br/>
 
-[Features](#-features) · [How it works](#-how-it-works) · [3D Lab](#-the-3d-analytics-lab) · [Quick start](#-quick-start) · [Safeguards](#-evidence-first-by-design) · [Limitations](#-limitations)
+**Turn any company, product, or industry question into a source-backed market brief,<br/>with interactive 3D analytics and zero fabricated numbers.**
+
+[✨ Why](#-why-this-exists) · [🚀 Features](#-features) · [⚡ How it works](#-how-it-works) · [🧊 3D Lab](#-the-3d-analytics-lab) · [🛡️ Safeguards](#%EF%B8%8F-evidence-first-by-design) · [⚙️ Quick start](#-quick-start)
 
 </div>
 
----
+<img src="assets/divider.svg" width="100%" alt=""/>
 
 ## ✨ Why this exists
 
-Most AI "research" tools hand you one confident, unverifiable paragraph. **Market Intelligence Studio** works the way an analyst would:
+Most AI "research" tools hand you one confident, unverifiable paragraph. **Market Intelligence Studio** works the way a real analyst does:
 
-> It plans its searches, gathers sources, analyzes competitors, trends, and financials **separately**, then synthesizes a report, and it never invents a number to make a chart look good.
+> 🧭 It **plans** its searches → 🌐 **gathers** live sources → 🧠 analyzes competitors, trends, and financials **separately** → 📌 **synthesizes** one report → 🧊 draws charts **only when the evidence supports them**.
 
-Every claim traces back to a retrieved source. Every rating is labeled as a judgment. Every chart is skipped if the evidence doesn't support it.
+Every claim traces back to a retrieved source. Every rating is labeled as a judgment. Every chart is skipped if the data isn't there.
 
-<!--
-📸 Add a screenshot or GIF here once you have one:
-<p align="center"><img src="assets/demo.gif" width="900" alt="Market Intelligence Studio demo"></p>
--->
+<img src="assets/divider.svg" width="100%" alt=""/>
 
----
+## 🧰 Built with
+
+<img src="assets/stack.svg" width="100%" alt="Python, Streamlit, LangGraph, LangChain, OpenAI, Tavily, Pandas, Plotly"/>
+
+<img src="assets/divider.svg" width="100%" alt=""/>
 
 ## 🚀 Features
 
-| | |
-|---|---|
-| 🧭 **Planned research** | An LLM proposes five targeted queries: position, competitors, trends, recent news, financials/funding. Malformed output? Deterministic fallback queries fill the gaps. |
-| 🌐 **Live web evidence** | Tavily retrieves up to 5 results per query. Results are deduplicated by URL and keep their title, content, originating query, and relevance score. |
-| ⚡ **Parallel analysts** | Competitor, trend, and financial analyses run as independent LangGraph branches, then merge into one executive report. |
-| 📌 **Executive report** | Summary, market position, key findings, opportunities, risks, next steps, and **evidence limitations**. Downloadable as Markdown. |
-| 🧊 **3D Analytics Lab** | Custom `Mesh3d` bars, rating surfaces, bubble maps, and linked subplots with one-click camera presets. |
-| 🔎 **Inspectable sources** | A dedicated tab lists every source with its query and relevance score. Export as CSV. |
-| 🛡️ **No fabricated data** | Charts render only when the evidence supports them. See [Evidence-first by design](#-evidence-first-by-design). |
+| | Feature | What it does |
+|:-:|---|---|
+| 🧭 | **Planned research** | An LLM proposes five targeted queries: position, competitors, trends, recent news, financials. If its output is malformed, deterministic fallback queries fill the gaps. |
+| 🌐 | **Live web evidence** | Tavily returns up to 5 results per query. Results are deduplicated by URL and keep title, content, query, and relevance score. |
+| ⚡ | **Parallel analysts** | Competitor, trend, and financial analyses run as independent LangGraph branches, then merge into one report. |
+| 📌 | **Executive report** | Summary, market position, findings, opportunities, risks, next steps, and **evidence limitations**. Download as Markdown. |
+| 🧊 | **3D Analytics Lab** | Custom `Mesh3d` bars, rating surfaces, bubble maps, and linked subplots with one-click camera presets. |
+| 🔎 | **Inspectable sources** | Every source is listed with its query and relevance score. Export as CSV. |
+| 🛡️ | **No fabricated data** | Charts render only when the retrieved evidence supports them. |
 
----
+<img src="assets/divider.svg" width="100%" alt=""/>
 
-## 🧠 How it works
+## ⚡ How it works
 
-```mermaid
-flowchart TD
-    A[🔤 Company / topic + research focus] --> B[🧭 Plan 5 search queries]
-    B --> C[🌐 Tavily web search]
-    C --> D[🧹 Deduplicate by URL]
-    D --> E[🏢 Competitor analysis]
-    D --> F[📈 Trend analysis]
-    D --> G[💰 Financial snapshot]
-    E --> H[📌 Synthesize executive report]
-    F --> H
-    G --> H
-    D --> I[🧮 Extract chart-ready JSON]
-    H --> J[🖥️ Streamlit dashboard]
-    I --> J
-    D --> J
-```
+<img src="assets/workflow.svg" width="100%" alt="Pipeline: topic, plan queries, Tavily search, three parallel analysts, final report, 3D dashboard"/>
 
-The workflow is a typed **LangGraph** state machine (`ResearchState`). After web research, the three analysis nodes fan out in parallel, and the synthesis node waits for all three. Chart-data extraction runs afterwards on the collected evidence (up to 18 sources, capped at 24,000 characters).
+The workflow is a typed **LangGraph** state machine. After web research, the three analysis nodes fan out **in parallel**, and the synthesis node waits for all three. Chart-data extraction then runs on the collected evidence (up to 18 sources, capped at 24,000 characters).
 
-**Each analyst has its own instructions:**
+<details>
+<summary><b>🧠 Meet the three analysts (click to expand)</b></summary>
 
-- **Competitors:** "skeptical market analyst"; separates confirmed facts from qualitative judgments; never invents market shares, scores, or prices.
-- **Trends:** "evidence-driven industry analyst"; labels uncertain or conflicting evidence; no manufactured time series or forecasts.
-- **Financials:** "careful financial research analyst, not a financial adviser"; reports figures only if present, with period, currency, and source URL.
+<br/>
 
----
+| Analyst | Persona | Rules it follows |
+|---|---|---|
+| 🏢 **Competitors** | Skeptical market analyst | Separates confirmed facts from judgments. Never invents market shares, scores, or prices. |
+| 📈 **Trends** | Evidence-driven industry analyst | Labels uncertain or conflicting evidence. No manufactured time series or forecasts. |
+| 💰 **Financials** | Careful financial analyst (not an adviser) | Reports figures only if present, with period, currency, and source URL. |
+
+</details>
+
+<img src="assets/divider.svg" width="100%" alt=""/>
 
 ## 🗂️ The dashboard
 
 | Tab | What you get |
 |---|---|
-| 📌 **Executive Report** | The synthesized brief with a Markdown download |
-| 🏢 **Competitors** | Written landscape, 3D scatter, 2D positioning map, and an expandable ratings table |
-| 📈 **Trends** | Evidence-led trends analysis and a chart of years mentioned in sources |
+| 📌 **Executive Report** | The synthesized brief, with a Markdown download |
+| 🏢 **Competitors** | Written landscape, 3D scatter, 2D positioning map, expandable ratings table |
+| 📈 **Trends** | Evidence-led analysis and a chart of years mentioned in sources |
 | 💰 **Financials** | Snapshot plus grouped bar charts, one metric and unit at a time |
 | 🧊 **3D Lab** | Competitor 3D, Financial 3D, and Evidence 3D |
-| 🔎 **Sources** | Titles, queries, clickable URLs, relevance scores, and CSV export |
+| 🔎 **Sources** | Titles, queries, clickable URLs, relevance scores, CSV export |
 
-A live metrics row shows **sources collected**, **competitors identified**, and **financial records** at a glance.
+A metrics row at the top shows **sources collected**, **competitors identified**, and **financial records**.
 
----
+<img src="assets/divider.svg" width="100%" alt=""/>
 
 ## 🧊 The 3D Analytics Lab
 
-Every 3D chart has **camera preset buttons** (*Default · Top · Front · Side · Low angle*), plus drag-to-rotate and scroll-to-zoom.
+<img src="assets/lab.svg" width="100%" alt="Animated preview of the rating surface and the 3D bubble map"/>
+
+<sub>☝️ Illustrative animation of the chart styles, drawn with sample data. In the app the same views are fully interactive Plotly charts.</sub>
+
+> [!TIP]
+> Every 3D chart has **camera preset buttons** (*Default · Top · Front · Side · Low angle*), plus drag-to-rotate, scroll-to-zoom, and rich hover cards with the rationale and source.
+
+<table>
+<tr>
+<td width="33%" valign="top">
 
 ### 🏢 Competitor 3D
-- **3D Bubble Map:** competitors plotted by market presence × innovation × offering breadth, with drop-lines to the floor. Bubble size and color encode the composite rating.
-- **Rating Surface:** competitors (ranked) × dimensions → rating. Needs at least two competitors.
-- **Linked Subplots:** the same competitors in three panels, each colored by a different dimension. Camera buttons control all three panels at once.
+- **Bubble Map:** presence × innovation × breadth, with drop-lines. Size and color show the composite rating.
+- **Rating Surface:** competitors × dimensions (needs 2+ competitors).
+- **Linked Subplots:** three panels, three color lenses, one set of camera buttons.
+
+</td>
+<td width="33%" valign="top">
 
 ### 💰 Financial 3D
-- Hand-built **3D bar charts** (cube geometry assembled into a single `Mesh3d` trace) comparing companies across reporting periods for **one metric and unit at a time**.
+- Hand-built **3D bars**: cube geometry assembled into a single `Mesh3d`.
+- Companies × reporting periods.
+- **One metric and unit at a time**, so axes are always comparable.
+
+</td>
+<td width="33%" valign="top">
 
 ### 🔎 Evidence 3D
-Charts about the research itself, not about the market:
-- **Evidence Bars:** research query × year mentioned × number of sources.
-- **Density Surface:** the same data as a smooth surface.
-- **Source Map:** relevance score × query × content length.
+Charts about the *research itself*, not the market:
+- **Evidence Bars:** query × year mentioned × source count.
+- **Density Surface:** the same data, smoothed.
+- **Source Map:** relevance × query × content length.
 
-> The composite rating is the mean of market presence, innovation, and offering breadth.
+</td>
+</tr>
+</table>
 
----
+The composite rating is the mean of market presence, innovation, and offering breadth.
+
+<img src="assets/divider.svg" width="100%" alt=""/>
 
 ## 🛡️ Evidence-first by design
 
-This project treats honesty as a feature:
-
-- ✅ **No invented financials.** A value is plotted only if it has a metric, period, unit, and source URL.
-- ✅ **No mixed axes.** Financial data is grouped by metric *and* unit, so revenue never shares an axis with funding, or USD with other currencies.
-- ✅ **Ratings are labeled as judgments.** The 1–10 competitor scores are qualitative, AI-assisted assessments with a rationale and source, **not** verified market measurements.
-- ✅ **Validated inputs.** Numeric fields are coerced; out-of-range ratings are dropped; duplicate competitor names are removed.
-- ✅ **Honest chronology.** The year chart counts years *mentioned in sources*. It is explicitly not a growth or sales time series.
-- ✅ **Graceful degradation.** If extraction fails or evidence is thin, the app shows a clear message instead of a made-up chart. The written report and sources always remain.
-- ✅ **Bounded context.** Analysis text is capped at 42,000 characters, with temperature `0` for consistent outputs.
-
----
-
-## 🧰 Tech stack
-
-| Layer | Technology |
+| ✅ Safeguard | How it works |
 |---|---|
-| UI | **Streamlit**, with custom CSS for a polished dashboard theme |
-| Orchestration | **LangGraph** (typed state, parallel branches, join node) |
-| LLM | **OpenAI `gpt-4.1-mini`** via **LangChain** (`temperature=0`) |
-| Search | **Tavily** |
-| Data | **Pandas** |
-| Visualization | **Plotly** Express + Graph Objects (`Scatter3d`, `Surface`, custom `Mesh3d`) |
-| Config | **python-dotenv** |
+| **No invented financials** | A value is plotted only with a metric, period, unit, and source URL. |
+| **No mixed axes** | Data is grouped by metric *and* unit, so revenue never shares an axis with funding, or USD with another currency. |
+| **Ratings are labeled** | The 1–10 competitor scores are qualitative, AI-assisted assessments with a rationale, **not** verified market data. |
+| **Validated inputs** | Numeric fields are coerced, out-of-range ratings dropped, duplicate competitors removed. |
+| **Honest chronology** | The year chart counts years *mentioned in sources*. It is not a growth or sales time series. |
+| **Graceful degradation** | Thin evidence produces a clear message, never a made-up chart. The report and sources always remain. |
+| **Bounded and stable** | Analysis context is capped at 42,000 characters; temperature is `0`. |
 
----
+<img src="assets/divider.svg" width="100%" alt=""/>
 
-## ⚡ Quick start
+## ⚙️ Quick start
 
-**Requirements:** Python 3.10+, an [OpenAI API key](https://platform.openai.com/), and a [Tavily API key](https://tavily.com/). API usage may incur charges.
+**You need:** Python 3.10+, an [OpenAI API key](https://platform.openai.com/), and a [Tavily API key](https://tavily.com/). API usage may incur charges.
 
-### 1. Install
+**1 · Install**
 
 ```bash
 # macOS / Linux
-python3 -m venv .venv
-source .venv/bin/activate
+python3 -m venv .venv && source .venv/bin/activate
 pip install -r requirements.txt
 cp .env.example .env
 ```
@@ -165,14 +160,14 @@ pip install -r requirements.txt
 Copy-Item .env.example .env
 ```
 
-### 2. Add your keys
+**2 · Add your keys** to `.env`
 
 ```dotenv
 OPENAI_API_KEY=your_openai_api_key
 TAVILY_API_KEY=your_tavily_api_key
 ```
 
-### 3. Run
+**3 · Run**
 
 ```bash
 streamlit run app.py
@@ -180,50 +175,49 @@ streamlit run app.py
 
 Open the local URL Streamlit prints in your terminal.
 
----
+### 🎯 Try these
 
-## 🎯 Try it with
+| Enter | Focus |
+|---|---|
+| `NVIDIA` | market position, competitors, and financial snapshot |
+| `Electric vehicles` | emerging trends, risks, and opportunities |
+| `Indian quick commerce` | competitive landscape and recent funding |
 
-- `NVIDIA` → *market position, competitors, and financial snapshot*
-- `Electric vehicles` → *emerging trends, risks, and opportunities*
-- `Indian quick commerce` → *competitive landscape and recent funding*
-
----
+<img src="assets/divider.svg" width="100%" alt=""/>
 
 ## 📁 Project structure
 
 ```text
-market-intelligence-studio/
-├── app.py              # Streamlit UI, LangGraph workflow, analysis prompts, 2D/3D charts
+├── app.py              # Streamlit UI, LangGraph workflow, prompts, 2D/3D charts
 ├── requirements.txt    # Python dependencies
 ├── .env.example        # API key template (copy to .env)
-├── .gitignore          # Excludes secrets and local Python artifacts
-└── .streamlit/
-    └── config.toml     # Streamlit theme settings
+├── .streamlit/
+│   └── config.toml     # Streamlit theme
+└── assets/             # Animated SVGs used by this README
 ```
-
----
 
 ## ⚠️ Limitations
 
-- LLM-generated analysis can be incomplete or wrong. **Open the sources and verify important claims**, especially before financial or business decisions.
+> [!WARNING]
+> LLM-generated analysis can be incomplete or wrong. **Open the sources and verify important claims**, especially before financial or business decisions.
+
 - Competitor ratings are qualitative; financial charts depend on figures actually present in retrieved snippets.
-- Search runs at Tavily's `basic` depth with 5 results per query, so coverage depends on what is returned.
-- Results live in Streamlit session state only. There is no database, authentication, multi-user support, or deployment configuration.
+- Search uses Tavily's `basic` depth with 5 results per query, so coverage depends on what is returned.
+- Results live in Streamlit session state only. There is no database, authentication, or deployment config.
 
-## 🗺️ Ideas for next steps
+## 🗺️ Roadmap
 
-- Persistent report history and side-by-side comparison of runs
-- PDF export of the executive report
-- Deeper search mode and source-quality weighting
-- Deployment recipe (Streamlit Community Cloud or Docker)
+- [ ] Persistent report history and side-by-side run comparison
+- [ ] PDF export of the executive report
+- [ ] Deeper search mode and source-quality weighting
+- [ ] One-click deployment (Streamlit Community Cloud or Docker)
 
----
+<img src="assets/divider.svg" width="100%" alt=""/>
 
 <div align="center">
 
-**Research • Compare • Discover**
+**📊 Research • Compare • Discover**
 
-*Keep `.env` private. Never commit real API keys.*
+<sub>Keep `.env` private. Never commit real API keys.</sub>
 
 </div>

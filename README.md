@@ -10,7 +10,7 @@
 
 **Turn any company, product, or industry question into a source-backed market brief,<br/>with interactive Plotly charts and zero fabricated numbers.**
 
-[✨ Why](#-why-this-exists) · [🚀 Features](#-features) · [⚡ How it works](#-how-it-works) · [🧊 3D Lab](#-the-3d-analytics-lab) · [🛡️ Safeguards](#%EF%B8%8F-evidence-first-by-design) · [⚙️ Quick start](#-quick-start)
+[✨ Why](#-why-this-exists) · [🚀 Features](#-features) · [⚡ How it works](#-how-it-works) · [🧊 Plotly Lab](#-the-3d-analytics-lab) · [🛡️ Safeguards](#%EF%B8%8F-evidence-first-by-design) · [⚙️ Quick start](#-quick-start)
 
 </div>
 
@@ -42,7 +42,7 @@ Every claim traces back to a retrieved source. Every rating is labeled as a judg
 | 🌐 | **Live web evidence** | Tavily returns up to 5 results per query. Results are deduplicated by URL and keep title, content, query, and relevance score. |
 | ⚡ | **Parallel analysts** | Competitor, trend, and financial analyses run as independent LangGraph branches, then merge into one report. |
 | 📌 | **Executive report** | Summary, market position, findings, opportunities, risks, next steps, and **evidence limitations**. Download as Markdown. |
-| 🧊 | **Plotly 3D Analytics Lab** | Interactive Plotly charts with custom `Mesh3d` bars, rating surfaces, bubble maps, and linked subplots with one-click camera presets. |
+| 🧊 | **Plotly Analytics Lab** | Interactive Plotly charts with custom `Mesh3d` bars, rating surfaces, bubble maps, and linked subplots with one-click camera presets. |
 | 🔎 | **Inspectable sources** | Every source is listed with its query and relevance score. Export as CSV. |
 | 🛡️ | **No fabricated data** | Charts render only when the retrieved evidence supports them. |
 
@@ -84,9 +84,9 @@ A metrics row at the top shows **sources collected**, **competitors identified**
 
 <img src="assets/divider.svg" width="100%" alt=""/>
 
-## 🧊 The 3D Analytics Lab
+## 🧊 The Plotly Analytics Lab
 
-<img src="assets/lab.svg" width="100%" alt="Animated preview of the rating surface and the 3D bubble map"/>
+<img src="assets/lab.svg" width="100%" alt="Animated preview of the rating surface and the Plotly bubble map"/>
 
 <sub>☝️ Illustrative animation of the chart styles, drawn with sample data. In the app the same views are fully interactive Plotly charts.</sub>
 
@@ -97,7 +97,7 @@ A metrics row at the top shows **sources collected**, **competitors identified**
 <tr>
 <td width="33%" valign="top">
 
-### 🏢 Competitor 3D
+### 🏢 Competitor Plotly mappings
 - **Bubble Map:** presence × innovation × breadth, with drop-lines. Size and color show the composite rating.
 - **Rating Surface:** competitors × dimensions (needs 2+ competitors).
 - **Linked Subplots:** three panels, three color lenses, one set of camera buttons.
@@ -105,7 +105,7 @@ A metrics row at the top shows **sources collected**, **competitors identified**
 </td>
 <td width="33%" valign="top">
 
-### 💰 Financial 3D
+### 💰 Financial Plotly figures
 - Hand-built **3D bars**: cube geometry assembled into a single `Mesh3d`.
 - Companies × reporting periods.
 - **One metric and unit at a time**, so axes are always comparable.
@@ -113,7 +113,7 @@ A metrics row at the top shows **sources collected**, **competitors identified**
 </td>
 <td width="33%" valign="top">
 
-### 🔎 Evidence 3D
+### 🔎 Evidence 3D Lab
 Charts about the *research itself*, not the market:
 - **Evidence Bars:** query × year mentioned × source count.
 - **Density Surface:** the same data, smoothed.

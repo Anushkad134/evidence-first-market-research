@@ -8,7 +8,7 @@
 
 <br/><br/>
 
-**Turn any company, product, or industry question into a source-backed market brief,<br/>with interactive 3D analytics and zero fabricated numbers.**
+**Turn any company, product, or industry question into a source-backed market brief,<br/>with interactive Plotly charts and zero fabricated numbers.**
 
 [✨ Why](#-why-this-exists) · [🚀 Features](#-features) · [⚡ How it works](#-how-it-works) · [🧊 3D Lab](#-the-3d-analytics-lab) · [🛡️ Safeguards](#%EF%B8%8F-evidence-first-by-design) · [⚙️ Quick start](#-quick-start)
 
@@ -30,6 +30,8 @@ Every claim traces back to a retrieved source. Every rating is labeled as a judg
 
 <img src="assets/stack.svg" width="100%" alt="Python, Streamlit, LangGraph, LangChain, OpenAI, Tavily, Pandas, Plotly"/>
 
+**Plotly** (Express + Graph Objects) powers every chart in the app: interactive 2D charts plus 3D `Scatter3d`, `Surface`, and custom `Mesh3d` views.
+
 <img src="assets/divider.svg" width="100%" alt=""/>
 
 ## 🚀 Features
@@ -40,7 +42,7 @@ Every claim traces back to a retrieved source. Every rating is labeled as a judg
 | 🌐 | **Live web evidence** | Tavily returns up to 5 results per query. Results are deduplicated by URL and keep title, content, query, and relevance score. |
 | ⚡ | **Parallel analysts** | Competitor, trend, and financial analyses run as independent LangGraph branches, then merge into one report. |
 | 📌 | **Executive report** | Summary, market position, findings, opportunities, risks, next steps, and **evidence limitations**. Download as Markdown. |
-| 🧊 | **3D Analytics Lab** | Custom `Mesh3d` bars, rating surfaces, bubble maps, and linked subplots with one-click camera presets. |
+| 🧊 | **Plotly 3D Analytics Lab** | Interactive Plotly charts with custom `Mesh3d` bars, rating surfaces, bubble maps, and linked subplots with one-click camera presets. |
 | 🔎 | **Inspectable sources** | Every source is listed with its query and relevance score. Export as CSV. |
 | 🛡️ | **No fabricated data** | Charts render only when the retrieved evidence supports them. |
 
@@ -89,7 +91,7 @@ A metrics row at the top shows **sources collected**, **competitors identified**
 <sub>☝️ Illustrative animation of the chart styles, drawn with sample data. In the app the same views are fully interactive Plotly charts.</sub>
 
 > [!TIP]
-> Every 3D chart has **camera preset buttons** (*Default · Top · Front · Side · Low angle*), plus drag-to-rotate, scroll-to-zoom, and rich hover cards with the rationale and source.
+> Every chart is an interactive **Plotly** figure. The 3D views add **camera preset buttons** (*Default · Top · Front · Side · Low angle*), plus drag-to-rotate, scroll-to-zoom, and rich hover cards with the rationale and source.
 
 <table>
 <tr>
